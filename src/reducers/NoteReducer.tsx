@@ -19,6 +19,7 @@ export function reducer(notes: Array<Note> = initialNotes, action: Action<any>) 
         case ActionType.LOAD_NOTES: {
             return action.payload
         }
+        case ActionType.STORE_NOTES:
         default:
             return notes;
     }

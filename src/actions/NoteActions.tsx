@@ -29,8 +29,8 @@ export const removeNote = (noteId: string): Action<string> => {
 export const loadNotes = (callback?: () => void) => {
     return function (dispatch: any) {
       axios.get(endpoint + 'state')
-      .then(responce => {
-        let notes = responce.data.notes;
+      .then(response => {
+        let notes = response.data.notes;
         if(notes){
             dispatch({
               type: ActionType.LOAD_NOTES,
@@ -49,7 +49,7 @@ export const loadNotes = (callback?: () => void) => {
 export const storeNotes = (notes: Array<Note>, callback?: () => void) => {
     return function (dispatch: any) {
       axios.post(endpoint + 'state', {notes})
-      .then(responce => {
+      .then(response => {
         dispatch({
           type: ActionType.STORE_NOTES,
           payload: notes

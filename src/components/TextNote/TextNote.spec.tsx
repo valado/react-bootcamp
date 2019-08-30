@@ -35,9 +35,3 @@ it('renders without crashing with shallow', () => {
 // Skip
 // xit, xdescribe
 // it.skip, describe.skip
-
-/*
-describe('additional tests', () => {
-    // it()
-});
-*/
