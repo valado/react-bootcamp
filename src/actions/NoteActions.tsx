@@ -1,7 +1,15 @@
 import { ActionType, Action } from '../model/Action';
-import { Note } from '../model/Note';
+import { Note, NoteType } from '../model/Note';
+const uuidv4 = require('uuid/v4');
 
-export const addNote = (note: Note): Action<Note> => {
+export const addNote = (text: string): Action<Note> => {
+    let note = {
+        id: uuidv4(),
+        title: '',
+        type: NoteType.TEXT,
+        content: text,
+        backgroundColor: '#fff'
+    };
     return {
         type: ActionType.ADD_NOTE,
         payload: note

@@ -5,29 +5,12 @@ interface IProps {
     note: Note
 };
 
-interface IState {
-
-};
-
-class TextNote extends React.Component<IProps, IState> {
-
-    public constructor(props: IProps) {
-        super(props);
-        this.state = {
-
-        };
-
-
-    }
-
-    public render () {
-        return (
-            <React.Fragment>
-                {this.props.note.content}
-            </React.Fragment>
-        );
-    }
-
+const TextNote: React.FunctionComponent<IProps> = (props) => {
+    return (
+        <React.Fragment>
+            {props.note.content}
+        </React.Fragment>
+    );
 }
 
 export default TextNote;

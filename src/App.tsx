@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { State } from './model';
 import * as NoteActions from './actions/NoteActions';
-import NoteList from './components/NoteList/NoteList';
 import { Note } from './model/Note';
+import Routing from './Routing';
 
 interface IProp {
   notes: Array<Note>;
@@ -15,7 +15,7 @@ interface IProp {
 const App: React.FunctionComponent<IProp> = (props: IProp) => {
   return (
     <div className="App">
-      <NoteList 
+      <Routing 
         notes={props.notes}
         noteActions={props.noteActions}
       />
