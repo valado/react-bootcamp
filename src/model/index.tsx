@@ -1,10 +1,14 @@
 
-import { Note, NoteType } from '../model/Note';
+import { Note } from '../model/Note';
 
 export interface State {
     notes: Array<Note>;
 };
 
+export const initialState: State = {
+    notes: []
+}
+/*
 export const initialState: State = {
     notes: [{
         id: 'id1',
@@ -32,3 +36,4 @@ export const initialState: State = {
         backgroundColor: 'blue'
     }]
 }
+*/

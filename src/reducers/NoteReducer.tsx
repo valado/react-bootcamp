@@ -16,6 +16,9 @@ export function reducer(notes: Array<Note> = initialNotes, action: Action<any>) 
                 return newNotes;
             }
             return notes;
+        case ActionType.LOAD_NOTES: {
+            return action.payload
+        }
         default:
             return notes;
     }

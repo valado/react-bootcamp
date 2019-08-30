@@ -13,7 +13,8 @@ export interface IAuthProps {
 const history = createBrowserHistory();
 
 const AuthRoute: React.FunctionComponent<IAuthProps> = (props: any) => {
-    let isAuthenticated = true;
+    let token = localStorage.getItem('token');
+    let isAuthenticated = token ? true : false;
     return (
         <React.Fragment>
             { isAuthenticated ?
@@ -29,16 +30,33 @@ const AuthRoute: React.FunctionComponent<IAuthProps> = (props: any) => {
     );
 }
 
+const LoggedInRoute: React.FunctionComponent<IAuthProps> = (props: any) => {
+    let token = localStorage.getItem('token');
+    let isAuthenticated = token ? true : false;
+    return (
+        <React.Fragment>
+            { isAuthenticated ?
+                <Redirect
+                    to={{
+                        pathname: '/'
+                    }}
+                /> :
+                props.children
+            }
+        </React.Fragment>
+    );
+}
+
 interface IProps {
     notes: Array<Note>;
     noteActions: typeof NoteActions
 }
 
-const Routing: React.FunctionComponent<IProps> = (props) => {
+const Routing: React.FunctionComponent<IProps> = (props: IProps) => {
     return (
         <Router history={history}>
             <Switch>
-                <Route path="/notes" exact>
+                <Route path="/" exact>
                     <AuthRoute>
                         <NotesPage
                             notes={props.notes}
@@ -46,10 +64,15 @@ const Routing: React.FunctionComponent<IProps> = (props) => {
                         />
                     </AuthRoute>
                 </Route>
-                <Route path="/register" exact component={RegisterPage}/>
-                <Route path="/login" exact component={LoginPage}/>
-                <Route>
-                    <LoginPage/>
+                <Route path="/register" exact>
+                    <LoggedInRoute>
+                        <RegisterPage/>
+                    </LoggedInRoute>
+                </Route>
+                <Route path="/login" exact>
+                    <LoggedInRoute>
+                        <LoginPage/>
+                    </LoggedInRoute>
                 </Route>
             </Switch>
         </Router>
